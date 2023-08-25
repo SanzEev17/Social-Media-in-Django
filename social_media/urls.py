@@ -9,5 +9,6 @@ urlpatterns = [
     path('', base_view, name='base'),
     path('', include('accounts.urls')),
     path('', include('feed.urls')),
-    path('', include('user_profile.urls')),
+    path('profile/', include('user_profile.urls')),
+    path('friends/', include('friend.urls'))
 ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
