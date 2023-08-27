@@ -27,6 +27,58 @@
             <div class="p-4 text-black" style="background-color: #f8f9fa;">
               <div class="d-flex justify-content-end text-center py-1">
               {% if profile_data.user != request.user %}
+              {% if friends %}
+                {% for friend_list in friends%}
+                    {%for friend in friend_list.friends.all%}
+                        {%if profile_data.user != friend%}
+                            {% if friend_request_sent%}
+                                {%for friend_request in friend_request_sent %}
+                                <a class="btn btn-outline-primary me-2"
+                                href="{% url 'cancel_friend_request' friend_request.id %}">
+                                Cancel Request
+                              </a>
+                                {%endfor%}
+                            {% elif friend_request_received%}
+                                {%for friend_request in friend_request_received %}
+                                <a class="btn btn-outline-primary me-2"
+                                href="{% url 'accept_friend_request' friend_request.id %}">
+                                  Accept Request
+                              </a>
+                                {%endfor%}
+                            {%else%}
+                            <a class="btn btn-outline-primary me-2"
+                            href="{% url 'send_friend_request' profile_data.user %}">
+                              Send Request
+                          </a>
+                            {%endif%}
+                        {%endif%}
+                    {%endfor%}
+                {%endfor%}
+
+              {% elif friend_request_sent%}
+                {%for friend_request in friend_request_sent %}
+                <a class="btn btn-outline-primary me-2"
+                href="{% url 'cancel_friend_request' friend_request.id %}">
+                Cancel Request
+              </a>
+                {%endfor%}
+            {% elif friend_request_received%}
+                {%for friend_request in friend_request_received %}
+                <a class="btn btn-outline-primary me-2"
+                href="{% url 'accept_friend_request' friend_request.id %}">
+                  Accept Request
+              </a>
+                {%endfor%}
+            {%else%}
+            <a class="btn btn-outline-primary me-2"
+            href="{% url 'send_friend_request' profile_data.user %}">
+              Send Request
+          </a>
+            {%endif%}
+
+
+
+
                 {% if friends or friend_request_sent or friend_request_received %}
                   {% for friend_list in friends %}
                   {% if friend_list.friends.all%}

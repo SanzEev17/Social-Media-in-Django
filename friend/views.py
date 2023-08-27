@@ -44,7 +44,7 @@ def accept_friend_request(request, friend_request_id):
     receiver_friend_list.friends.add(friend_request.sender)
     sender_friend_list.friends.add(friend_request.receiver)
     friend_request.delete()
-    return redirect('user_profile', username=friend_request.receiver)
+    return redirect('user_profile', username=friend_request.sender)
 
 
 @login_required

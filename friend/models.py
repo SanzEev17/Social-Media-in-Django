@@ -7,8 +7,6 @@ class FriendList(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
     friends = models.ManyToManyField(User, blank=True, related_name='friends')
     
-    def friends_data(self):
-        return [str(p) for p in self.friends.all()]
     def __str__(self):
         # return f'{self.user.username} --> {self.friends.all}'
         return f'{self.user.username} --> {[str(p) for p in self.friends.all()]}'
