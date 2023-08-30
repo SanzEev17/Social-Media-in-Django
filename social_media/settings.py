@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'accounts',
     'feed',
     'user_profile',
-    'friend'
+    'friend',
+    'post'
 ]
 
 MIDDLEWARE = [
