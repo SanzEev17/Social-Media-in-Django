@@ -8,7 +8,7 @@ def img_path(instance, filename):
 
 
 class Post(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     posted_photo = models.ImageField(upload_to=img_path, null=True, blank=True)
     caption = models.CharField(max_length=200, blank=True, null=True)
     created_at = models.DateTimeField(default=datetime.now)

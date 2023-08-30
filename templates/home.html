@@ -1,27 +1,20 @@
 {%extends 'base.html'%}
 {%block content%}
-            <!-- MAIN SECTION -->
-            <!-- <div class="col-12 col-sm-10 col-md-9 col-lg-7  main_bar ">
-                
-            </div> -->
-
-
-
     <!-- ================= Appbar ================= -->
-    {% include 'feed/partials/appbar.html'%}
+    {% include 'partials/appbar.html'%}
 
     <!-- ================= Main ================= -->
     <div class="container-fluid">
         <div class="row justify-content-evenly">
             <!-- ================= Sidebar ================= -->
-            {% include 'feed/partials/navbar.html'%}
+            {% include 'partials/navbar.html'%}
             <!-- ================= Timeline ================= -->
             {%block pages%}
         
             {%endblock pages%}
         
         <!-- ================= Chatbar ================= -->
-        {% include 'feed/partials/all-friends.html'%}
+        {% include 'partials/all-friends.html'%}
       </div>
     </div>
 {%endblock%}

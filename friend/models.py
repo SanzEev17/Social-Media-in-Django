@@ -10,6 +10,7 @@ class FriendList(models.Model):
     def __str__(self):
         # return f'{self.user.username} --> {self.friends.all}'
         return f'{self.user.username} --> {[str(p) for p in self.friends.all()]}'
+    
 
 
 """ Friend Request model """

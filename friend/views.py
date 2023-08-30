@@ -6,8 +6,24 @@ from .models import FriendList, FriendRequest
 
 @login_required
 def friends_list(request):
-    friends = FriendList.objects.filter(user=request.user) | FriendList.objects.filter(friends=request.user)
-    return render(request, 'user-profile/user-profile.html', {'friends': friends})
+    friends = FriendList.objects.get(user=request.user)
+    context = {
+        'friends':friends
+    }
+    return render(request, 'friends/friend-list.html', context=context)
+
+@login_required
+def friend_requests(request):
+    user = User.objects.all().exclude(username=request.user.username)
+    friend_requests = FriendRequest.objects.filter(receiver=request.user)
+    friends = FriendList.objects.get(user=request.user)
+    
+    context = {
+        'users':user,
+        'friend_requests':friend_requests,
+        'friends':friends
+    }
+    return render(request, 'friends/friend-requests.html', context)
 
 
 @login_required
@@ -38,11 +54,15 @@ def accept_friend_request(request, friend_request_id):
     except:
         receiver_friend_list = FriendList.objects.create(user=friend_request.receiver)
         sender_friend_list = FriendList.objects.create(user=friend_request.sender)
-    # FriendList.objects.create(
-    #     user=friend_request.sender, friends=friend_request.receiver
-    # )
     receiver_friend_list.friends.add(friend_request.sender)
     sender_friend_list.friends.add(friend_request.receiver)
+    friend_request.delete()
+    return redirect('user_profile', username=friend_request.sender)
+
+
+@login_required
+def decline_friend_request(request, friend_request_id):
+    friend_request = FriendRequest.objects.get(id=friend_request_id)
     friend_request.delete()
     return redirect('user_profile', username=friend_request.sender)
 

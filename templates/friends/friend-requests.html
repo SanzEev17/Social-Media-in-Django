@@ -1,0 +1,57 @@
+{% extends 'home.html' %}
+{% block pages%}
+
+
+<div class="col-12 col-lg-6 pb-5 mt-5">
+    <div class="card mt-4">
+        <div class="container mt-4">
+            <h1>Friend Requests</h1>
+            <ul class="list-group">
+                {% for request in friend_requests%}
+                <li class="list-group-item d-flex align-items-center justify-content-between mb-2 rounded">
+                    <div class="d-flex align-items-center">
+                        <img src="{{ request.sender.profile.profile_img.url }}" class="rounded-circle me-3" width="50">
+                        <div class="pt-2">
+                            <h5>{{request.sender.first_name}} {{request.sender.last_name}}</h5>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="btn btn-outline-primary me-2" href="{% url 'accept_friend_request' request.id %}">
+                            Accept Request
+                        </a>
+                        <a class="btn btn-outline-danger me-2" href="{% url 'decline_friend_request' request.id %}">
+                            Decline Request
+                        </a>
+                    </div>
+                </li>
+                {% endfor%}
+            </ul>
+        </div>
+        <div class="container mt-4">
+            <h1>People You May Know</h1>
+            <ul class="list-group">
+                {% for user in users%}
+                {% if user not in friends.friends.all%}
+                <li class="list-group-item d-flex align-items-center justify-content-between mb-2 rounded">
+                    <div class="d-flex align-items-center">
+                        <img src="{{ user.profile.profile_img.url }}" class="rounded-circle me-3" width="50">
+                        <div class="pt-2">
+                            <h5>{{user.first_name}} {{user.last_name}}</h5>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="btn btn-outline-primary me-2"
+                            href="{% url 'send_friend_request' user %}">
+                            Send Request
+                        </a>
+                    </div>
+                </li>
+                {%endif%}
+                {% endfor%}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

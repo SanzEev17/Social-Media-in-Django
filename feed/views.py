@@ -22,22 +22,5 @@ def home_view(request):
         'comments':comments,
         'comment_form':comment_form
     }
-    return render(request, 'feed/home.html', context)
+    return render(request, 'feed.html', context)
 
-def create_post(request):
-    post_form = PostForm(request.POST)
-    if post_form.is_valid():
-        obj = post_form.save(commit=False)
-        obj.user = request.user
-        obj.save()
-    return redirect('/')
-
-
-def create_comment(request):
-    comment_form = CommentForm(request.POST or None)
-    if comment_form.is_valid():
-        obj = comment_form.save(commit=False)
-        obj.post.id=request.POST.get('post')
-        obj.commenter = request.user
-        obj.save()
-    return redirect('/')

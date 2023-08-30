@@ -1,0 +1,27 @@
+{%extends 'home.html'%}
+{% block pages %}
+
+
+<div class="col-12 col-lg-6 pb-5">
+    <div
+      class="d-flex flex-column justify-content-center w-100 mx-auto"
+      style="padding-top: 56px; max-width: 680px"
+    >
+      <!-- stories -->
+      {% include 'partials/stories.html'%}
+
+
+      <!-- create post -->
+      {% include 'partials/create-post.html'%}
+      
+      <!-- posts -->
+      {% for post in posts reversed %}
+        {%for friend in friends.friends.all%}
+          {% if post.user == friend%}
+            {% include 'partials/posts.html'%}
+          {%endif%}
+        {%endfor%}
+      {%endfor%}
+    </div>
+  </div>
+{%endblock%}

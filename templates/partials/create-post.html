@@ -1,0 +1,150 @@
+<div class="bg-white p-3 mt-3 rounded border shadow">
+    <!-- avatar -->
+    <div class="d-flex" type="button">
+      <div class="p-1">
+        <img
+          src="{{request.user.profile.profile_img.url}}"
+          alt="avatar"
+          class="rounded-circle me-2"
+          style="width: 38px; height: 38px; object-fit: cover"
+        />
+      </div>
+      <input
+        type="text"
+        class="form-control rounded-pill border-0 bg-gray pointer"
+        placeholder="What's on your mind, {{request.user.first_name}}?"
+        data-bs-toggle="modal"
+        data-bs-target="#createModal"
+      />
+    </div>
+    <!-- create modal -->
+    <form
+      class="modal fade"
+      id="createModal"
+      tabindex="-1"
+      aria-labelledby="createModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="false"
+      method="POST"
+      action="create_post"
+      enctype="multipart/form-data"
+    >
+    {%csrf_token%}
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- head -->
+          <div class="modal-header align-items-center">
+            <h5
+              class="text-dark text-center w-100 m-0"
+              id="exampleModalLabel"
+            >
+              Create Post
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- body -->
+          <div class="modal-body">
+            <div class="my-1 p-1">
+              <div class="d-flex flex-column">
+                <!-- name -->
+                <div class="d-flex align-items-center">
+                  <div class="p-2">
+                    <img
+                      src="{{request.user.profile.profile_img.url}}"
+                      alt="from fb"
+                      class="rounded-circle"
+                      style="
+                        width: 38px;
+                        height: 38px;
+                        object-fit: cover;
+                      "
+                    />
+                  </div>
+                  <div>
+                    <p class="m-0 fw-bold">{{request.user.first_name}}</p>
+                    <select
+                      class="form-select border-0 bg-gray w-75 fs-7"
+                      aria-label="Default select example"
+                    >
+                      <option selected value="1">Public</option>
+                      <option value="2">Pin To Top</option>
+                      <option value="3">Hide</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- text -->
+                <div>
+                  {{ post_form.caption}}
+                </div>
+                <div>
+                  {{ post_form.posted_photo}}
+                </div>
+                <!-- options -->
+                <div
+                  class="
+                    d-flex
+                    justify-content-between
+                    border border-1 border-light
+                    rounded
+                    p-3
+                    mt-3
+                  "
+                >
+                  <p class="m-0">Add to your post</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- end -->
+          </div>
+          <!-- footer -->
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary w-100">
+              Post
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <hr />
+    <!-- actions -->
+    <div class="d-flex flex-column flex-lg-row mt-3">
+      <!-- a 1 -->
+      
+      <!-- a 2 -->
+      <div
+        class="
+          dropdown-item
+          rounded
+          d-flex
+          align-items-center
+          justify-content-center
+        "
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#createModal"
+      >
+        <i class="fas fa-photo-video me-2 text-success"></i>
+        <p class="m-0 text-muted">Photo/Video</p>
+      </div>
+      <!-- a 3 -->
+      <div
+        class="
+          dropdown-item
+          rounded
+          d-flex
+          align-items-center
+          justify-content-center
+        "
+        type="button"
+      >
+        <i class="fas fa-smile me-2 text-warning"></i>
+        <p class="m-0 text-muted">Feeling/Activity</p>
+      </div>
+    </div>
+  </div>
