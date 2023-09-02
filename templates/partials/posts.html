@@ -50,7 +50,9 @@
           <!-- <i class="text-danger fab fa-gratipay"></i> -->
           <!-- <i class="text-warning fas fa-grin-squint"></i> -->
         </div>
-        <p class="m-0 text-muted fs-7">Phu, Tuan, and 3 others</p>
+        <p class="m-0 text-muted fs-7">
+          {{post.no_of_likes}} Like{% if post.no_of_likes > 1 %}s{%endif%}
+        </p>
       </div>
         <!-- comments start-->
         <div class="accordion" id="accordionExample">
@@ -82,16 +84,28 @@
               class="
               dropdown-item
               rounded
-                  d-flex
-                  justify-content-center
-                  align-items-center
                   pointer
-                  text-muted
+                  {% for like in likes%}
+                    {% if user is request.user and liked_post is post%}
+                      text-primary
+                    {%else%}
+                      text-muted
+                    {% endif%}
+                  {%endfor%}
                   p-1
                 "
               >
+              <a href="{% url 'like_post' post_id=post.id%}" class=" text-decoration-none text-muted">
+              <div class="d-flex justify-content-center align-items-center
+              {% for like in likes%}
+                {% if like.liked_post == post%}
+                  text-primary
+                {% endif%}
+              {%endfor%}">
                 <i class="fas fa-thumbs-up me-3"></i>
                 <p class="m-0">Like</p>
+              </div>
+              </a>
               </div>
               <div
                 class="

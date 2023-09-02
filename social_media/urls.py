@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('', include('feed.urls')),
     path('', include('post.urls')),
-    path('profile/', include('user_profile.urls')),
     path('friends/', include('friend.urls')),
+    path('', include('user_profile.urls')),
+    path('chat/', include('chat.urls')),
 ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

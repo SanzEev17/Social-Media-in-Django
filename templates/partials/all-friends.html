@@ -30,8 +30,9 @@
           data-bs-toggle="modal"
           data-bs-target="#singleChat1">
           <!-- avatar -->
-          <div
-            class="d-flex align-items-center mx-2 chat-avatar"
+          <a
+            class="d-flex align-items-center mx-2 chat-avatar text-decoration-none text-black"
+            href="{%url 'user_profile' username=friend.username%}"
             data-bs-custom-class="chat-box"
             data-bs-container="body"
             data-bs-toggle="popover"
@@ -82,7 +83,7 @@
               </span>
             </div>
             <p class="m-0">{{friend.first_name}} {{friend.last_name}}</p>
-          </div>
+          </a>
         </li>
         {%endfor%}
       </div>

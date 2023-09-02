@@ -5,7 +5,7 @@ from django.db.models import Count
 from .models import Profile
 from friend.models import FriendList, FriendRequest
 from .forms import ProfileForm
-from post.models import Post, Comments
+from post.models import Post, Comments, Likes
 from post.forms import CommentForm
 
 # Create your views here.
@@ -19,13 +19,15 @@ def user_profile_view(request, username=None):
     friend_request_received = friend_requests.filter(sender=user).filter(receiver=request.user)
     posts = Post.objects.annotate(comment_count=Count('comments')).filter(user=user)
     comments = Comments.objects.all()
+    likes = Likes.objects.all().filter(user=request.user)
     context = {
         'friends':friends,
         "profile_data" : profile,
         'friend_request_sent':friend_request_sent,
         'friend_request_received':friend_request_received,
         'posts':posts,
-        'comments':comments
+        'comments':comments,
+        'likes':likes
     }
     return render(request, 'user-profile/user-profile.html', context=context)
 
