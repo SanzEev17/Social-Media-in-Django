@@ -18,7 +18,7 @@
         <div class="d-flex align-items-center  justify-content-sm-end justify-content-md-start">
           <span><i class="fa-solid fa-envelope fs-2 py-3"></i></span>
           <p class="d-none d-md-block fs-4 pt-3 ps-2">
-            <a href="{%url 'user_profile' username=request.user%}" class="text-decoration-none text-black">Messages</a>
+            <a href="{%url 'chat:chat_list'%}" class="text-decoration-none text-black">Messages</a>
           </p>
         </div>
         <div class="d-flex align-items-center  justify-content-sm-end justify-content-md-start">
@@ -49,13 +49,6 @@
           </p>
         </div>
       </div>
-    </div>
-    <!-- terms -->
-    <div class="p-2 mt-5 pt-5">
-      <p class="text-muted fs-7">
-        Privacy &#8226; Terms &#8226; Advertising &#8226; Ad Choices
-        &#8226; Cookies &#8226; Flexbook © 2021
-      </p>
     </div>
   </div>
 </div>

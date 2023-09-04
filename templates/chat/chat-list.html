@@ -1,0 +1,33 @@
+{% extends 'home.html'%}
+{% block pages%}
+
+<div class="col-12 col-lg-6 pb-5 mt-5">
+  <div class="card mt-4">
+      <div class="container mt-4">
+          <h3>Chats</h3>
+          <ul class="list-group">
+              {% for friend, messages in friend_messages%}
+              <li class="list-group-item d-flex align-items-center justify-content-between mb-2 rounded">
+                  <div class="d-flex align-items-center">
+                      <img src="{{ friend.profile.profile_img.url }}" alt="Friend 1" class="rounded-circle me-3" width="50">
+                      <div class="pt-2">
+                          <h5>{{friend.first_name}} {{friend.last_name}}</h5>
+                          <p>
+                            {% if messages.sender == request.user%}You: {%endif%}
+                            {{messages.content}} <small class="text-muted ps-2">-{{messages.timestamp|date:'h:i a'}}</small>
+                          </p>
+                      </div>
+                  </div>
+                  <div>
+                      <a class="btn btn-outline-primary me-2" href="{% url 'chat:chat' friend.id %}">
+                          Message
+                      </a>
+                  </div>
+              </li>
+              {%endfor%}
+          </ul>
+      </div>
+  </div>
+</div>
+
+  {%endblock%}

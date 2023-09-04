@@ -4,8 +4,9 @@
 
 <div class="col-12 col-lg-6 pb-5 mt-5">
     <div class="card mt-4">
+        {% if friend_requests%}
         <div class="container mt-4">
-            <h1>Friend Requests</h1>
+            <h3>Friend Requests</h3>
             <ul class="list-group">
                 {% for request in friend_requests%}
                 <li class="list-group-item d-flex align-items-center justify-content-between mb-2 rounded">
@@ -27,8 +28,9 @@
                 {% endfor%}
             </ul>
         </div>
+        {%endif%}
         <div class="container mt-4">
-            <h1>People You May Know</h1>
+            <h3>People You May Know</h3>
             <ul class="list-group">
                 {% for user in users%}
                 {% if user not in friends.friends.all%}
