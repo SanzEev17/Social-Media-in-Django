@@ -2,7 +2,9 @@ from typing import Any
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 
 class LoginForm(AuthenticationForm):
@@ -33,7 +35,7 @@ class RegisterForm(UserCreationForm):
     }), label='First Name')
     last_name = forms.CharField(widget=forms.TextInput(), label='Last Name')
     username = forms.CharField(widget=forms.TextInput(), label='Username')
-    email = forms.CharField(widget=forms.TextInput(), label='Email Address')
+    email = forms.EmailField(widget=forms.TextInput(), label='Email Address')
     password1 = forms.CharField(widget=forms.TextInput(attrs={
         'type':'password',
     }), label='Password')

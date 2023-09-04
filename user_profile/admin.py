@@ -1,6 +1,9 @@
 from django.contrib import admin
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import Group
 from .models import Profile
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 # Register your models here.
 
@@ -12,8 +15,7 @@ class ProfileInline(admin.StackedInline):
 
 class UserAdmin(admin.ModelAdmin):
     model=User
-    fields = ['first_name','last_name','username']
+    fields = ['first_name','last_name','username', 'email', 'password']
     inlines = [ProfileInline,]
 
-admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

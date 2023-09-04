@@ -6,6 +6,9 @@ from .models import Profile
 from friend.models import FriendList, FriendRequest
 from .forms import ProfileForm
 from post.models import Post, Comments, Likes
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 # Create your views here.
 @login_required

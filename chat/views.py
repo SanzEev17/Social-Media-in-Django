@@ -5,6 +5,9 @@ from .models import Message
 from friend.models import FriendList
 from django.db.models import Q
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 def chat_list(request):
     friends = FriendList.objects.get(user=request.user)
