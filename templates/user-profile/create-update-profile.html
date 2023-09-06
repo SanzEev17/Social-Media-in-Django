@@ -12,9 +12,9 @@
                         <div class="card-body p-5">
                             <h2 class="text-uppercase text-center mb-5">Additional Information </h2>
 
-                            <form action="." method="post">
+                            <form action="." method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-
+ 
                                 {% for error in form.non_field_errors %}
                                 <div class="alert alert-primary d-flex align-items-center" role="alert">
                                     <div>

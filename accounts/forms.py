@@ -8,8 +8,7 @@ User = get_user_model()
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={
-    }))
+    username = forms.CharField(label="Username or Email")
     password = forms.CharField(widget=forms.TextInput(attrs={
         'type':'password',
     }))

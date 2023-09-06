@@ -1,54 +1,83 @@
 <div class="col-12 col-lg-3">
-  <div class="d-none d-xxl-block h-100 fixed-top overflow-hidden scrollbar"
+  <div class="h-100 fixed-top overflow-hidden d-flex align-items-center"
     style="max-width: 360px; width: 100%; z-index: 4">
     <div
-      class="container pt-5 ps-5 d-none d-sm-block d-flex flex-column text-sm-end text-md-start align-items-lg-start left_sidebar border-end ">
-      <div class="ps-4 pt-3">
-        <div class="pt-5 d-flex align-items-center">
+      class="container ps-5 d-none d-sm-block d-flex flex-column text-sm-end text-md-start align-items-lg-start left_sidebar border-end ">
+      <div class="ps-4 d-flex flex-column gap-2">
+        <div class="d-flex align-items-center">
           <span><i class="fa-solid fa-hashtag fs-2 py-3 d-none d-md-block"></i></span>
           <p class="d-none d-md-block fs-4 pt-3 ps-2"><a href="{% url 'home'%}"
-              class="text-decoration-none text-black">Home</a></p>
+              class="text-decoration-none 
+              {% if request.resolver_match.url_name == 'home' %}
+              text-black
+              {%else%}
+              text-muted
+              {%endif%}
+              ">Home</a></p>
         </div>
         <div class="d-flex align-items-center  justify-content-sm-end justify-content-md-start">
           <span><i class="fa-solid fa-bell fs-2 py-3"></i></span>
           <p class="d-none d-md-block fs-4 pt-3 ps-2">
-            <a href="{%url 'user_profile' username=request.user%}" class="text-decoration-none text-black">Profile</a>
+            <a href="{%url 'user_profile' username=request.user%}" class="text-decoration-none
+            {% if request.resolver_match.url_name == 'user_profile' %}
+            text-black
+            {%else%}
+            text-muted
+            {%endif%}">Profile</a>
           </p>
         </div>
         <div class="d-flex align-items-center  justify-content-sm-end justify-content-md-start">
           <span><i class="fa-solid fa-envelope fs-2 py-3"></i></span>
           <p class="d-none d-md-block fs-4 pt-3 ps-2">
-            <a href="{%url 'chat:chat_list'%}" class="text-decoration-none text-black">Messages</a>
+            <a href="{%url 'chat:chat_list'%}" class="text-decoration-none 
+            {% if request.resolver_match.url_name == 'chat_list' %}
+            text-black
+            {%else%}
+            text-muted
+            {%endif%}">Messages</a>
           </p>
         </div>
         <div class="d-flex align-items-center  justify-content-sm-end justify-content-md-start">
           <span><i class="fa-solid fa-file-lines fs-2 py-3"></i></span>
           <p class="d-none d-md-block fs-4 pt-3 ps-2">
-            <a href="{%url 'friends_list'%}" class="text-decoration-none text-black">Friends
+            <a href="{%url 'friends_list'%}" class="text-decoration-none
+            {% if request.resolver_match.url_name == 'friends_list' %}
+            text-black
+            {%else%}
+            text-muted
+            {%endif%}
+             ">Friends
               List</a>
           </p>
         </div>
         <div class="d-flex align-items-center  justify-content-sm-end justify-content-md-start">
           <span><i class="fa-solid fa-bookmark fs-2 py-3"></i></span>
           <p class="d-none d-md-block fs-4 pt-3 ps-2">
-            <a href="{%url 'friend_requests'%}" class="text-decoration-none text-black">Friend
-              Requests</a>
-          </p>
-        </div>
-        <div class="d-flex align-items-center  justify-content-sm-end justify-content-md-start">
-          <span><i class="fa-solid fa-bookmark fs-2 py-3"></i></span>
-          <p class="d-none d-md-block fs-4 pt-3 ps-2">
-            <a href="{%url 'user_profile' username=request.user%}" class="text-decoration-none text-black">Friend
+            <a href="{%url 'friend_requests'%}" class="text-decoration-none 
+            {% if request.resolver_match.url_name == 'friend_requests' %}
+              text-black
+              {%else%}
+              text-muted
+              {%endif%}
+            ">Friend
               Requests</a>
           </p>
         </div>
         <div class="d-flex align-items-center  justify-content-sm-end justify-content-md-start">
           <span><i class="fa-solid fa-ellipsis fs-2 py-3"></i></span>
           <p class="d-none d-md-block fs-4 pt-3 ps-2">
-            <a href="{%url 'accounts:logout'%}" class="text-decoration-none text-black">Logout</a>
+            <a href="{%url 'accounts:logout'%}" class="text-decoration-none 
+            {% if request.resolver_match.url_name == 'logout' %}
+              text-black
+              {%else%}
+              text-muted
+              {%endif%}
+            " data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop">Logout</a>
           </p>
         </div>
       </div>
     </div>
   </div>
 </div>
+{% include 'accounts/logout.html'%}

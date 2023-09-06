@@ -12,10 +12,12 @@
                       <img src="{{ friend.profile.profile_img.url }}" alt="Friend 1" class="rounded-circle me-3" width="50">
                       <div class="pt-2">
                           <h5>{{friend.first_name}} {{friend.last_name}}</h5>
+                          {% if messages%}
                           <p>
                             {% if messages.sender == request.user%}You: {%endif%}
                             {{messages.content}} <small class="text-muted ps-2">-{{messages.timestamp|date:'h:i a'}}</small>
                           </p>
+                          {%endif%}
                       </div>
                   </div>
                   <div>
