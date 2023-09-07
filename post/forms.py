@@ -6,7 +6,7 @@ class PostForm(forms.ModelForm):
             'class':'form-control border-1',
             'height':"30",
             'rows':"5"
-        }))
+        }), required=False)
     class Meta:
         model = Post
         fields = ['caption', 'posted_photo']

@@ -4,7 +4,7 @@ from .views import(
     create_comment,
     like_post
 )
-
+app_name='post'
 urlpatterns = [
     path('create_post', create_post, name='create_post'),
     path('create_comment', create_comment, name='create_comment'),

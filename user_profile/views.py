@@ -6,6 +6,7 @@ from .models import Profile
 from friend.models import FriendList, FriendRequest
 from .forms import ProfileForm
 from post.models import Post, Comments, Likes
+from post.forms import CommentForm
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -22,7 +23,7 @@ def user_profile_view(request, username):
     posts = Post.objects.annotate(comment_count=Count('comments')).filter(user=user)
     comments = Comments.objects.all()
     likes = Likes.objects.all().filter(user=request.user)
-    # profile_form = ProfileForm(instance=profile)
+    comment_form = CommentForm()
 
 
     context = {
@@ -33,7 +34,7 @@ def user_profile_view(request, username):
         'posts':posts,
         'comments':comments,
         'likes':likes,
-        # 'profile_form':profile_form
+        'comment_form':comment_form,
     }
     return render(request, 'user-profile/user-profile.html', context=context)
 

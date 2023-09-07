@@ -29,11 +29,16 @@ def chat_list(request):
 
 def chat(request, request_id):
     receiver = User.objects.get(id=request_id)
-    # messages = Message.objects.filter(sender=request.user, receiver=receiver) | Message.objects.filter(sender=receiver, receiver=request.user)
+    friends = FriendList.objects.get(user=request.user)
     messages = Message.objects.filter(
             Q(sender=request.user, receiver=receiver) | Q(sender=receiver, receiver=request.user)
         ).order_by("timestamp")
-    return render(request, 'chat/chat.html', {'receiver': receiver, 'messages': messages})
+    context = {
+        'receiver':receiver,
+        'messages':messages,
+        'friends':friends
+    }
+    return render(request, 'chat/chat.html', context=context)
 
 def send_message(request):
     if request.method == 'POST':

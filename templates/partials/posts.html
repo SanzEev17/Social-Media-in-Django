@@ -47,8 +47,6 @@
         >
         <div class="me-2">
           <i class="text-primary fas fa-thumbs-up"></i>
-          <!-- <i class="text-danger fab fa-gratipay"></i> -->
-          <!-- <i class="text-warning fas fa-grin-squint"></i> -->
         </div>
         <p class="m-0 text-muted fs-7">
           {{post.no_of_likes}} Like{% if post.no_of_likes > 1 %}s{%endif%}
@@ -95,7 +93,7 @@
                   p-1
                 "
               >
-              <a href="{% url 'like_post' post_id=post.id%}" class=" text-decoration-none text-muted">
+              <a href="{% url 'post:like_post' post_id=post.id%}" class=" text-decoration-none text-muted">
               <div class="d-flex justify-content-center align-items-center
               {% for like in likes%}
                 {% if like.liked_post == post%}
@@ -208,7 +206,7 @@
                 {%endif%}
                 {%endfor%}
                 <!-- create comment -->
-                <form class="d-flex my-1" method="post" action="create_comment">
+                <form class="d-flex my-1" method="post" action="{% url 'post:create_comment'%}">
                   {%csrf_token%}
                   <!-- avatar -->
                   <div>
