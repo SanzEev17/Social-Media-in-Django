@@ -176,4 +176,4 @@ cython_debug/
 *.code-workspace
 
 .vscode
-Social Media Web Application.code-workspace
+./Social Media Web Application.code-workspace
