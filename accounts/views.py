@@ -51,7 +51,6 @@ def register_view(request):
                 'otp': otp,
                 'form_data': form.cleaned_data,
             }
-        # user_save = form.save()
         return redirect("accounts:verify_otp")
 
     context = {

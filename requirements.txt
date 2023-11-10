@@ -1,3 +1,6 @@
 django
 Pillow
-psycopg2
+django-allauth
+pyotp
+psycopg2-binary
+django-dotenv
